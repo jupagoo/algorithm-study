@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class BOJ_1712 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int fixedCost = sc.nextInt();
+        int variableCost = sc.nextInt();
+        int price = sc.nextInt();
+
+        if (price <= variableCost){
+            System.out.println(-1);
+        } else{
+            int breakEvenPoint = fixedCost/(price - variableCost) + 1;
+            System.out.println(breakEvenPoint);
+        }
+    }
+}
