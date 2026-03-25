@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class BOJ_2108 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[] arr = new int[N];
+        int[] count = new int[8001];
+        int sum = 0;
+
+        for (int i = 0; i < N; i++) {
+            arr[i] = sc.nextInt();
+            sum += arr[i];
+            count[arr[i] + 4000] ++;
+        }
+
+        Arrays.sort(arr);
+
+        int mean = (int)Math.round(sum / (double) N);
+
+        int median = arr[N/2];
+
+        int maxCount = 0;
+        for (int i = 0; i < 8001; i++) {
+            if (count[i] > maxCount)
+                maxCount = count[i];
+        }
+
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 8001; i++) {
+            if (count[i] == maxCount)
+                list.add(i - 4000);
+        }
+
+        int mode;
+        if(list.size() > 1)
+            mode = list.get(1);
+        else mode = list.get(0);
+
+        int range = arr[N - 1] - arr[0];
+
+        System.out.println(mean);
+        System.out.println(median);
+        System.out.println(mode);
+        System.out.println(range);
+    }
+}
